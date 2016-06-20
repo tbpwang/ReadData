@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class ReadData {
     //1923-1968
-    private static final String FROM_URL = "http://worldwindserver.net/webworldwind/data/Earth/LandSat/9/1930";
+    private static final String FROM_URL = "http://worldwindserver.net/webworldwind/data/Earth/LandSat/9/1944";
     private static final String FILE_SAVE_PATH = "D:\\data\\";
 
     public static void main(String[] args) {
@@ -37,14 +37,19 @@ public class ReadData {
             reader = new BufferedReader(inputStreamReader);
 
             Long startTime = System.currentTimeMillis();
-            Date date =  new Date(startTime);
+            Date date = new Date(startTime);
             System.out.println("Starting time is: " + date.toString());
             System.out.println("Please Wait!");
 
-            while ((line = reader.readLine()) != null){
+            boolean flag = false;
+            while ((line = reader.readLine()) != null) {
                 if (line.trim().startsWith("<a href=")) {
-                    png = line.substring(15,27);
-//                    System.out.println(png);
+                    png = line.substring(15, 27);
+                    System.out.println(png);
+//                    if (png.equals("1939_846.png")) {
+//                        flag = true;
+//                    }
+//                    if (flag) {
 
                     urlPGN = new URL(FROM_URL + "/" + png);
                     urlPGNConnection = urlPGN.openConnection();
@@ -56,10 +61,11 @@ public class ReadData {
                     ImageIO.write(image, "png", out);
                     out.flush();
                     out.close();
+//                    }
                 }
             }
             Long endTime = System.currentTimeMillis();
-            System.out.println("It costs: " + (endTime - startTime)/1000 + " Seconds.");
+            System.out.println("It costs: " + (endTime - startTime) / 1000 / 60 + " minutes.");
         } catch (IOException e) {
             e.printStackTrace();
         }
