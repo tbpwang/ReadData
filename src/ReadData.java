@@ -14,7 +14,9 @@ import java.util.Date;
  */
 public class ReadData {
     //1923-1968
-    private static final String FROM_URL = "http://worldwindserver.net/webworldwind/data/Earth/LandSat/9/1944";
+    private static final String FROM_URL = "http://worldwindserver.net/webworldwind/data/Earth/LandSat/9/1968" +
+            "" +
+            "";
     private static final String FILE_SAVE_PATH = "D:\\data\\";
 
     public static void main(String[] args) {
@@ -46,7 +48,7 @@ public class ReadData {
                 if (line.trim().startsWith("<a href=")) {
                     png = line.substring(15, 27);
                     System.out.println(png);
-//                    if (png.equals("1939_846.png")) {
+//                    if (png.equals("1967_865.png")) {
 //                        flag = true;
 //                    }
 //                    if (flag) {
