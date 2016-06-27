@@ -48,10 +48,11 @@ public class ReadData {
                 if (line.trim().startsWith("<a href=")) {
                     png = line.substring(15, 27);
                     System.out.println(png);
-//                    if (png.equals("1967_865.png")) {
-//                        flag = true;
-//                    }
-//                    if (flag) {
+                    //中断加载
+                    if (png.equals("1967_865.png")) {
+                        flag = true;
+                    }
+                    if (flag) {
 
                     urlPGN = new URL(FROM_URL + "/" + png);
                     urlPGNConnection = urlPGN.openConnection();
@@ -63,7 +64,7 @@ public class ReadData {
                     ImageIO.write(image, "png", out);
                     out.flush();
                     out.close();
-//                    }
+                    }
                 }
             }
             Long endTime = System.currentTimeMillis();
